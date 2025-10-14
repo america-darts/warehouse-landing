@@ -103,6 +103,19 @@
       border: 2px solid #8b0000;
       border-radius: 8px;
     }
+    .signup-form .checkbox-container {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin: 0.5rem 0;
+    }
+    .signup-form .checkbox-container input {
+      width: auto;
+      margin-right: 10px;
+    }
+    .signup-form .checkbox-container label {
+      width: auto;
+    }
     footer {
       text-align: center;
       padding: 2rem;
@@ -140,16 +153,38 @@
       <label for="email">Email</label>
       <input type="email" id="email" name="email" required>
 
-      <label for="events">Select Events</label>
-      <select id="events" name="events" multiple required>
-        <option value="friday">Friday Open Blind Draw</option>
-        <option value="saturday_rr">Saturday Round Robin</option>
-        <option value="saturday_ko">Saturday Knockout</option>
-        <option value="saturday_night">Saturday Blind Draw Cricket</option>
-        <option value="sunday">Sunday Men’s/Women’s Doubles</option>
-        <option value="all">All Events (Discount)</option>
-      </select>
+      <div class="checkbox-container">
+        <input type="checkbox" id="jersey" name="jersey" value="65">
+        <label for="jersey">Purchase a tournament jersey for $65</label>
+      </div>
 
+      <label for="events">Select Events</label>
+      <div class="checkbox-container">
+        <input type="checkbox" id="friday" name="events" value="friday">
+        <label for="friday">Friday Open Blind Draw</label>
+      </div>
+      <div class="checkbox-container">
+        <input type="checkbox" id="saturday_rr" name="events" value="saturday_rr">
+        <label for="saturday_rr">Saturday Round Robin</label>
+      </div>
+      <div class="checkbox-container">
+        <input type="checkbox" id="saturday_ko" name="events" value="saturday_ko">
+        <label for="saturday_ko">Saturday Knockout</label>
+      </div>
+      <div class="checkbox-container">
+        <input type="checkbox" id="saturday_night" name="events" value="saturday_night">
+        <label for="saturday_night">Saturday Blind Draw Cricket</label>
+      </div>
+      <div class="checkbox-container">
+        <input type="checkbox" id="sunday" name="events" value="sunday">
+        <label for="sunday">Sunday Men’s/Women’s Doubles</label>
+      </div>
+      <div class="checkbox-container">
+        <input type="checkbox" id="all" name="events" value="all">
+        <label for="all">All Events (Discount)</label>
+      </div>
+
+      <h2 id="total-price">Total: $0</h2>
       <button type="submit">Submit Registration</button>
     </form>
   </section>
@@ -169,5 +204,73 @@
   <footer>
     <p>© 2025 Wrecking Ball Warehouse Darts Tournament · Salinas, CA</p>
   </footer>
+
+  <script>
+    const prices = {
+      friday: 25,
+      saturday_rr: 25,
+      saturday_ko: 50,
+      saturday_night: 25,
+      sunday: 25,
+      all: 125,
+      jersey: 65
+    };
+
+    const form = document.querySelector('.signup-form');
+    const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+    const totalPriceEl = document.getElementById('total-price');
+
+    function calculateTotal() {
+      let total = 0;
+      const events = [];
+      const allEventsCheckbox = document.getElementById('all');
+      const saturdayRRCheckbox = document.getElementById('saturday_rr');
+      const saturdayKOCheckbox = document.getElementById('saturday_ko');
+
+      if (allEventsCheckbox.checked) {
+        total = prices.all;
+        checkboxes.forEach(cb => {
+          if (cb.id !== 'all' && cb.id !== 'jersey') {
+            cb.disabled = true;
+            cb.checked = false;
+          }
+        });
+      } else {
+        checkboxes.forEach(cb => {
+          if (cb.id !== 'all' && cb.id !== 'jersey') {
+            cb.disabled = false;
+          }
+        });
+
+        checkboxes.forEach(checkbox => {
+          if (checkbox.checked && prices[checkbox.id]) {
+            if (checkbox.id !== 'jersey') {
+              events.push(checkbox.id);
+            }
+          }
+        });
+
+        events.forEach(event => {
+          total += prices[event];
+        });
+
+        if (saturdayRRCheckbox.checked && saturdayKOCheckbox.checked) {
+          total -= 25;
+        }
+      }
+
+      if (document.getElementById('jersey').checked) {
+        total += prices.jersey;
+      }
+
+      totalPriceEl.textContent = `Total: $${total}`;
+    }
+
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', calculateTotal);
+    });
+
+    calculateTotal();
+  </script>
 </body>
 </html>
