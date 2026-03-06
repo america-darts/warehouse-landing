@@ -6,7 +6,7 @@
   <title>Wrecking Ball Warehouse Darts Tournament</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary-red: #d32f2f;
@@ -16,12 +16,17 @@
       --text-white: #ffffff;
       --text-gray: #b0b0b0;
       --accent-yellow: #ffd700;
+      --accent-blue: #2196f3;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -41,14 +46,14 @@
     /* Hero Section */
     .hero {
       position: relative;
-      height: 80vh;
-      min-height: 500px;
+      height: 90vh;
+      min-height: 600px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('flyer.jpeg');
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('flyer.jpeg');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -56,23 +61,31 @@
     }
 
     .hero-content {
-      max-width: 800px;
+      max-width: 900px;
       z-index: 1;
     }
 
     .hero h1 {
-      font-size: clamp(2.5rem, 8vw, 5rem);
-      line-height: 1.1;
-      margin-bottom: 1rem;
+      font-size: clamp(3rem, 10vw, 6rem);
+      line-height: 1;
+      margin-bottom: 1.5rem;
       color: var(--text-white);
-      text-shadow: 3px 3px 0px var(--primary-red);
+      text-shadow: 4px 4px 0px var(--primary-red);
     }
 
     .hero p {
-      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      font-size: clamp(1.2rem, 3.5vw, 1.8rem);
       color: var(--accent-yellow);
-      margin-bottom: 2rem;
-      font-weight: bold;
+      margin-bottom: 2.5rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .cta-button {
@@ -85,31 +98,41 @@
       font-size: 1.25rem;
       border-radius: 4px;
       transition: all 0.3s ease;
-      border: none;
+      border: 2px solid var(--primary-red);
       cursor: pointer;
     }
 
     .cta-button:hover {
-      background-color: white;
-      color: var(--primary-red);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(211, 47, 47, 0.3);
+      background-color: transparent;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(211, 47, 47, 0.4);
+    }
+
+    .cta-button.secondary {
+      background-color: transparent;
+      border-color: var(--text-white);
+    }
+
+    .cta-button.secondary:hover {
+      background-color: var(--text-white);
+      color: var(--bg-black);
     }
 
     /* Main Content */
     .container {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 4rem 1.5rem;
     }
 
     section {
-      margin-bottom: 5rem;
+      margin-bottom: 6rem;
     }
 
     h2 {
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
+      font-size: 3rem;
+      margin-bottom: 3rem;
       text-align: center;
       position: relative;
       padding-bottom: 1rem;
@@ -121,28 +144,59 @@
       bottom: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
+      width: 100px;
+      height: 5px;
       background-color: var(--primary-red);
+    }
+
+    /* Flyer Section */
+    .flyer-display {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .flyer-img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      border: 4px solid var(--card-bg);
     }
 
     /* Schedule Cards */
     .schedule-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
     }
 
     .event-card {
       background: var(--card-bg);
-      padding: 2rem;
+      padding: 2.5rem;
       border-radius: 8px;
-      border-left: 5px solid var(--primary-red);
-      transition: transform 0.3s ease;
+      border-top: 4px solid var(--primary-red);
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
 
     .event-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-10px);
+      background: #222;
+    }
+
+    .event-card::before {
+      content: 'DARTS';
+      position: absolute;
+      bottom: -20px;
+      right: -10px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 5rem;
+      font-weight: 900;
+      color: rgba(255,255,255,0.03);
+      pointer-events: none;
     }
 
     .event-time {
@@ -151,49 +205,120 @@
       font-family: 'Oswald', sans-serif;
       margin-bottom: 0.5rem;
       display: block;
+      font-size: 1.2rem;
     }
 
     .event-title {
-      font-size: 1.2rem;
-      font-weight: bold;
-      margin-bottom: 0.5rem;
+      font-size: 1.5rem;
+      font-weight: 900;
+      margin-bottom: 1rem;
       color: var(--text-white);
+      line-height: 1.2;
+      font-family: 'Oswald', sans-serif;
+    }
+
+    .event-details {
+      flex-grow: 1;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+      color: var(--text-gray);
     }
 
     .event-price {
       color: var(--accent-yellow);
-      font-weight: bold;
+      font-weight: 900;
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .payout-tag {
+      background: var(--primary-red);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-family: 'Oswald', sans-serif;
+    }
+
+    .learn-more-btn {
+      background: transparent;
+      border: 1px solid var(--text-gray);
+      color: var(--text-gray);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      text-transform: uppercase;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.8rem;
+      transition: all 0.2s;
+    }
+
+    .learn-more-btn:hover {
+      border-color: var(--accent-yellow);
+      color: var(--accent-yellow);
+    }
+
+    /* Descriptions */
+    .description-box {
+      background: #151515;
+      padding: 2.5rem;
+      border-radius: 12px;
+      margin-top: 4rem;
+      border-left: 10px solid var(--accent-yellow);
+    }
+
+    .description-box h3 {
+      color: var(--accent-yellow);
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+    }
+
+    .description-box p {
+      margin-bottom: 1.5rem;
     }
 
     /* Signup Form */
     .signup-container {
       background: var(--card-bg);
-      padding: 3rem;
+      padding: 4rem;
       border-radius: 12px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+      border: 1px solid #333;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
     }
 
     .form-group {
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
     }
 
     label {
       display: block;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.8rem;
       font-weight: bold;
       color: var(--text-gray);
+      font-family: 'Oswald', sans-serif;
+      text-transform: uppercase;
     }
 
     input[type="text"],
     input[type="email"],
     select {
       width: 100%;
-      padding: 0.8rem 1rem;
-      background: #2a2a2a;
-      border: 1px solid #444;
-      border-radius: 4px;
+      padding: 1rem 1.2rem;
+      background: #252525;
+      border: 2px solid #333;
+      border-radius: 6px;
       color: white;
-      font-size: 1rem;
+      font-size: 1.1rem;
+      transition: border-color 0.3s;
     }
 
     input:focus {
@@ -201,27 +326,38 @@
       border-color: var(--primary-red);
     }
 
+    .checkbox-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
     .checkbox-group {
-      background: #252525;
-      padding: 1rem;
-      border-radius: 6px;
-      margin-bottom: 1rem;
-      border: 1px solid transparent;
+      background: #222;
+      padding: 1.2rem;
+      border-radius: 8px;
+      border: 2px solid transparent;
       transition: all 0.2s;
       display: flex;
       align-items: center;
       cursor: pointer;
+      position: relative;
     }
 
     .checkbox-group:hover {
-      background: #333;
-      border-color: #555;
+      background: #2a2a2a;
+      border-color: #444;
+    }
+
+    .checkbox-group.selected {
+      border-color: var(--primary-red);
+      background: #2d1515;
     }
 
     .checkbox-group input {
-      width: 20px;
-      height: 20px;
-      margin-right: 15px;
+      width: 25px;
+      height: 25px;
+      margin-right: 20px;
       cursor: pointer;
       accent-color: var(--primary-red);
     }
@@ -231,107 +367,208 @@
       color: var(--text-white);
       cursor: pointer;
       flex: 1;
+      font-family: 'Roboto', sans-serif;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .item-price {
+      font-weight: 900;
+      color: var(--accent-yellow);
+      margin-left: 10px;
     }
 
     .total-display {
-      font-size: 2rem;
+      grid-column: 1 / -1;
+      font-size: 3rem;
       text-align: right;
       margin: 2rem 0;
       color: var(--accent-yellow);
       font-family: 'Oswald', sans-serif;
+      border-top: 2px solid #333;
+      padding-top: 1.5rem;
     }
 
     .submit-btn {
+      grid-column: 1 / -1;
       width: 100%;
-      padding: 1.2rem;
+      padding: 1.5rem;
       background: var(--primary-red);
       color: white;
       border: none;
-      border-radius: 4px;
-      font-size: 1.5rem;
+      border-radius: 6px;
+      font-size: 1.8rem;
       font-family: 'Oswald', sans-serif;
       text-transform: uppercase;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: all 0.3s;
+      box-shadow: 0 10px 20px rgba(211, 47, 47, 0.3);
     }
 
     .submit-btn:hover {
       background: var(--dark-red);
+      transform: translateY(-2px);
+    }
+
+    /* Links Section */
+    .quick-links {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .link-card {
+      background: var(--card-bg);
+      padding: 1.5rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      color: white;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.2rem;
+      border: 1px solid #333;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .link-card:hover {
+      border-color: var(--accent-yellow);
+      color: var(--accent-yellow);
+      transform: scale(1.05);
     }
 
     /* Payment Section */
     .payment-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      align-items: center;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      align-items: start;
     }
 
-    .payment-methods {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
+    .payment-info h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary-red);
     }
 
     .payment-link {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 1rem;
-      background: #2a2a2a;
+      padding: 1.2rem;
+      background: #252525;
       border-radius: 8px;
       text-decoration: none;
       color: white;
-      font-weight: bold;
-      transition: background 0.3s;
-      border: 1px solid #444;
+      font-weight: 900;
+      transition: all 0.3s;
+      border: 2px solid #333;
+      margin-bottom: 1rem;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
     }
 
     .payment-link:hover {
       background: #333;
-      border-color: var(--primary-red);
+      border-color: var(--accent-yellow);
+      color: var(--accent-yellow);
     }
 
     .qr-container {
       text-align: center;
       background: white;
-      padding: 1.5rem;
+      padding: 2rem;
       border-radius: 12px;
       width: fit-content;
       margin: 0 auto;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
     }
 
     .qr-container img {
-      max-width: 200px;
+      max-width: 250px;
       display: block;
     }
 
     .qr-label {
       color: #000;
-      font-weight: bold;
-      margin-top: 0.5rem;
+      font-weight: 900;
+      margin-top: 1rem;
       font-family: 'Oswald', sans-serif;
+      font-size: 1.2rem;
+    }
+
+    /* Modal Styling */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.9);
+      overflow-y: auto;
+      padding: 2rem;
+    }
+
+    .modal-content {
+      background-color: var(--card-bg);
+      margin: 5% auto;
+      padding: 3rem;
+      border-radius: 12px;
+      max-width: 700px;
+      position: relative;
+      border: 1px solid var(--primary-red);
+    }
+
+    .close-modal {
+      position: absolute;
+      right: 20px;
+      top: 10px;
+      color: var(--text-gray);
+      font-size: 2.5rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close-modal:hover {
+      color: white;
     }
 
     /* Footer */
     footer {
       background: #000;
-      padding: 3rem 1.5rem;
+      padding: 4rem 1.5rem;
       text-align: center;
       border-top: 1px solid #222;
     }
 
     .footer-content {
       color: var(--text-gray);
-      font-size: 0.9rem;
+      font-size: 1rem;
+    }
+
+    .footer-logo {
+      font-size: 2rem;
+      color: var(--primary-red);
+      margin-bottom: 1rem;
+      font-weight: 900;
     }
 
     /* Responsive adjustments */
+    @media (max-width: 992px) {
+      .form-grid { grid-template-columns: 1fr; }
+    }
+
     @media (max-width: 768px) {
-      .hero { height: 60vh; }
-      .container { padding: 2rem 1rem; }
-      .signup-container { padding: 1.5rem; }
+      .hero { height: 70vh; }
+      .container { padding: 3rem 1rem; }
+      .signup-container { padding: 2rem 1.5rem; }
       .schedule-grid { grid-template-columns: 1fr; }
+      h2 { font-size: 2.2rem; }
     }
   </style>
 </head>
@@ -340,123 +577,238 @@
   <header class="hero">
     <div class="hero-content">
       <h1>Wrecking Ball Warehouse Darts Tournament</h1>
-      <p>MARCH 27–29 · 1319 BURTON AVE, SALINAS, CA</p>
-      <a href="#signup" class="cta-button">REGISTER NOW</a>
+      <p>MARCH 27–29 · <a href="https://www.google.com/maps/search/?api=1&query=1319+BURTON+AVE+SALINAS+CA" target="_blank" style="color: inherit; text-decoration: underline;">1319 BURTON AVE, SALINAS, CA</a></p>
+      <div class="hero-buttons">
+        <a href="#signup" class="cta-button">REGISTER NOW</a>
+        <a href="#flyer" class="cta-button secondary">VIEW FLYER</a>
+      </div>
     </div>
   </header>
 
   <div class="container">
+    <section id="flyer">
+      <h2>Event Flyer</h2>
+      <div class="flyer-display">
+        <img src="flyer.jpeg" alt="Tournament Flyer" class="flyer-img">
+      </div>
+      <div class="quick-links">
+        <a href="#signup" class="link-card">
+          <span>👕</span> Get Your Personalized Jersey ($65)
+        </a>
+        <a href="mailto:erickristoffersen@gmail.com?subject=Sponsorship Inquiry" class="link-card">
+          <span>🤝</span> Become a Tournament Sponsor
+        </a>
+      </div>
+    </section>
+
     <section id="schedule">
       <h2>Tournament Schedule</h2>
       <div class="schedule-grid">
         <div class="event-card">
           <span class="event-time">Friday 8:00 PM</span>
           <div class="event-title">CALCUTTA Blind Draw Doubles Chicago</div>
-          <div class="event-price">$20 Entry · $100 Added</div>
+          <div class="event-details">
+            Double elimination blind draw Chicago. Calcutta Auction after draw.
+          </div>
+          <div class="event-price">
+            <span>$15 Entry</span>
+            <span class="payout-tag">90% Payout</span>
+          </div>
+          <button class="learn-more-btn" onclick="openModal('calcutta')">Learn More</button>
         </div>
+
         <div class="event-card">
           <span class="event-time">Saturday 10:00 AM</span>
           <div class="event-title">Open Round Robin Singles 501</div>
-          <div class="event-price">$60 Entry · $500 Added</div>
+          <div class="event-details">
+            Modified "loosely balanced" round robin. Everyone moves to knockout based on performance.
+          </div>
+          <div class="event-price">
+            <span>$50 Entry</span>
+            <span class="payout-tag">90% Payout</span>
+          </div>
+          <button class="learn-more-btn" onclick="openModal('sat-rr')">Learn More</button>
         </div>
+
         <div class="event-card">
-          <span class="event-time">Saturday 2:00 PM</span>
+          <span class="event-time">Saturday 1:00 PM</span>
           <div class="event-title">Upper/Lower Knockout Singles 501</div>
-          <div class="event-price">FREE with Round Robin Entry</div>
+          <div class="event-details">
+            Multiple divisions based on RR performance. Long format singles knockout.
+          </div>
+          <div class="event-price">
+            <span>FREE with RR Entry</span>
+            <span class="payout-tag">90% Payout</span>
+          </div>
+          <button class="learn-more-btn" onclick="openModal('sat-ko')">Learn More</button>
         </div>
+
+        <div class="event-card" style="border-top-color: var(--accent-yellow);">
+          <span class="event-time">Saturday 5:00 - 7:00 PM</span>
+          <div class="event-title">Divisional Finals Extravaganza</div>
+          <div class="event-details">
+            Free Beer (while supplies last), BBQ/Taco Truck, Walk-ons with smoke & music, Streaming & Interviews!
+          </div>
+          <div class="event-price">
+            <span>SPECTATORS WELCOME</span>
+          </div>
+          <button class="learn-more-btn" onclick="openModal('party')">Learn More</button>
+        </div>
+
         <div class="event-card">
-          <span class="event-time">Saturday 8:00 PM</span>
-          <div class="event-title">CALCUTTA Blind Draw Doubles Cricket</div>
-          <div class="event-price">$20 Entry · $100 Added</div>
+          <span class="event-time">Saturday 7:00 PM</span>
+          <div class="event-title">CALCUTTA OPEN MIXED TRIOS</div>
+          <div class="event-details">
+            (Two men, one lady) – 701-Cricket-701- Single Elimination. Build your best team!
+          </div>
+          <div class="event-price">
+            <span>$75 Per Team</span>
+            <span class="payout-tag" style="background:var(--accent-yellow); color:black">100% Payout</span>
+          </div>
+          <button class="learn-more-btn" onclick="openModal('trios')">Learn More</button>
         </div>
+
         <div class="event-card">
           <span class="event-time">Sunday 10:00 AM</span>
-          <div class="event-title">Open Chicago Doubles</div>
-          <div class="event-price">$50 per team · $100 Added</div>
+          <div class="event-title">CALCUTTA Blind Draw Doubles Cricket</div>
+          <div class="event-details">
+            Sunday morning blind draw cricket with Calcutta Auction.
+          </div>
+          <div class="event-price">
+            <span>$15 Entry</span>
+            <span class="payout-tag">90% Payout</span>
+          </div>
+          <button class="learn-more-btn" onclick="openModal('calcutta')">Learn More</button>
         </div>
+
         <div class="event-card">
-          <span class="event-time">Sunday 11:00 AM</span>
-          <div class="event-title">Women's Chicago Doubles</div>
-          <div class="event-price">$50 per team · $200 Added</div>
+          <span class="event-time">Sunday 1:00 PM</span>
+          <div class="event-title">Open Divisional Cricket Doubles</div>
+          <div class="event-details">
+            Single Elimination. Teams placed in divisions based on Saturday ratings.
+          </div>
+          <div class="event-price">
+            <span>$50 Per Team</span>
+            <span class="payout-tag">90% Payout</span>
+          </div>
+          <button class="learn-more-btn" onclick="openModal('sun-doubles')">Learn More</button>
+        </div>
+
+        <div class="event-card">
+          <span class="event-time">Sunday 3:00 PM</span>
+          <div class="event-title">Divisional Singles Cricket</div>
+          <div class="event-details">
+            Single Elimination. Split into divisions by ratings from the previous day.
+          </div>
+          <div class="event-price">
+            <span>$25 Entry</span>
+            <span class="payout-tag">90% Payout</span>
+          </div>
+          <button class="learn-more-btn" onclick="openModal('sun-singles')">Learn More</button>
         </div>
       </div>
-      <p style="text-align: center; margin-top: 2rem; color: var(--accent-yellow); font-weight: bold;">
-        BUNDLE DEAL: Sign up for all events + jersey and save $15! ($190 value for $175)
-      </p>
+
+      <div class="description-box">
+        <h3>Calcutta Auction Explained</h3>
+        <p>After the blind draw teams are decided, we will do an auction. You can choose to bid on any team auction style. 80% of the winning bids will go to a prize pool and 20% will be used for event expenses. Whoever bids on the winning team will get 75% of that prize pool, 25% of the prize pool will go to the person who chose a randomly selected team. We will do this for both of the blind draws and Trios so bring some cash but be smart about your bids! We will accept Venmo and similar payment options for these bids.</p>
+        
+        <h3 style="margin-top: 2rem;">50/50 Raffle Auction</h3>
+        <p>There will be a weekend long 50/50 Raffle – You will get a physical ticket and you will not need to be present for the draw. 50% of this pot will go direct to the winner and 50% will go to event expenses.</p>
+        <p style="font-weight: bold; color: var(--accent-yellow);">
+          Ticket Pricing: $5 per ticket · $20 for 6 tickets · $100 for 40 tickets.
+        </p>
+      </div>
     </section>
 
     <section id="signup">
-      <h2>Registration</h2>
+      <h2>Register For Events</h2>
       <div class="signup-container">
         <form class="signup-form" action="https://formsubmit.co/erickristoffersen@gmail.com" method="POST">
-          <input type="hidden" name="_subject" value="New Darts Tournament Signup!">
+          <input type="hidden" name="_subject" value="Tournament Signup: Wrecking Ball Warehouse">
           
-          <div class="form-group">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="name">Player Full Name</label>
+              <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group" style="grid-column: 1 / -1;">
+              <label>Select Your Events & Add-ons</label>
+              <div class="checkbox-list">
+                
+                <div class="checkbox-group" data-price="15">
+                  <input type="checkbox" id="friday" name="events" value="Friday Blind Draw">
+                  <label for="friday">Friday Blind Draw Chicago <span class="item-price">$15</span></label>
+                </div>
+
+                <div class="checkbox-group" data-price="50">
+                  <input type="checkbox" id="sat_rr" name="events" value="Sat Round Robin">
+                  <label for="sat_rr">Saturday Open Round Robin (Includes Knockout) <span class="item-price">$50</span></label>
+                </div>
+
+                <div class="checkbox-group" data-price="75">
+                  <input type="checkbox" id="sat_trios" name="events" value="Sat Trios">
+                  <label for="sat_trios">Saturday Open Mixed Trios (Price Per Team) <span class="item-price">$75</span></label>
+                </div>
+
+                <div class="checkbox-group" data-price="15">
+                  <input type="checkbox" id="sun_draw" name="events" value="Sun Blind Draw">
+                  <label for="sun_draw">Sunday Blind Draw Cricket <span class="item-price">$15</span></label>
+                </div>
+
+                <div class="checkbox-group" data-price="50">
+                  <input type="checkbox" id="sun_doubles" name="events" value="Sun Doubles">
+                  <label for="sun_doubles">Sunday Divisional Cricket Doubles (Price Per Team) <span class="item-price">$50</span></label>
+                </div>
+
+                <div class="checkbox-group" data-price="25">
+                  <input type="checkbox" id="sun_singles" name="events" value="Sun Singles">
+                  <label for="sun_singles">Sunday Divisional Singles Cricket <span class="item-price">$25</span></label>
+                </div>
+
+                <div class="checkbox-group" data-price="65" style="border-top: 1px solid #444; margin-top: 1rem;">
+                  <input type="checkbox" id="jersey" name="jersey" value="Personalized Jersey">
+                  <label for="jersey">Personalized Tournament Jersey (We'll contact for size/name) <span class="item-price">$65</span></label>
+                </div>
+
+                <div class="checkbox-group" data-price="175" style="border: 2px solid var(--accent-yellow); margin-top: 1rem;">
+                  <input type="checkbox" id="bundle" name="bundle" value="THE BUNDLE">
+                  <label for="bundle"><strong>THE BUNDLE:</strong> Friday/Sun Blind Draws + Sat RR + Jersey <span class="item-price">$175 (Save $20!)</span></label>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email" required>
-          </div>
-
-          <div class="form-group">
-            <label>Select Your Options</label>
-            
-            <div class="checkbox-group">
-              <input type="checkbox" id="jersey" name="jersey" value="65">
-              <label for="jersey">Tournament Jersey ($65) - We'll contact you for size</label>
-            </div>
-
-            <div class="checkbox-group">
-              <input type="checkbox" id="friday" name="events" value="friday">
-              <label for="friday">Friday Open Blind Draw Chicago ($20)</label>
-            </div>
-
-            <div class="checkbox-group">
-              <input type="checkbox" id="saturday_rr" name="events" value="saturday_rr">
-              <label for="saturday_rr">Saturday Round Robin ($60)</label>
-            </div>
-
-            <div class="checkbox-group">
-              <input type="checkbox" id="saturday_night" name="events" value="saturday_night">
-              <label for="saturday_night">Saturday Blind Draw Cricket ($20)</label>
-            </div>
-
-            <div class="checkbox-group">
-              <input type="checkbox" id="sunday_open" name="events" value="sunday_open">
-              <label for="sunday_open">Sunday Open Doubles ($25 Individual)</label>
-            </div>
-
-            <div class="checkbox-group">
-              <input type="checkbox" id="sunday_womens" name="events" value="sunday_womens">
-              <label for="sunday_womens">Sunday Women's Doubles ($25 Individual)</label>
-            </div>
-
-            <div class="checkbox-group" style="border: 2px solid var(--primary-red);">
-              <input type="checkbox" id="all" name="events" value="all">
-              <label for="all"><strong>THE BUNDLE: All Events + Jersey ($175)</strong></label>
-            </div>
-          </div>
-
-          <div class="total-display" id="total-price">Total: $0</div>
+          <div class="total-display" id="total-price">Total Due: $0</div>
           
-          <button type="submit" class="submit-btn">Complete Registration</button>
+          <button type="submit" class="submit-btn">Submit Registration</button>
         </form>
+      </div>
+
+      <div class="quick-links" style="margin-top: 2rem;">
+        <a href="mailto:erickristoffersen@gmail.com?subject=Sponsorship Inquiry" class="link-card" style="font-size: 1rem;">
+          Want to support the event? Click here to become a sponsor!
+        </a>
       </div>
     </section>
 
     <section id="payment">
-      <h2>Payment Options</h2>
+      <h2>Complete Your Payment</h2>
       <div class="payment-grid">
-        <div class="payment-methods">
-          <p>Please complete payment after submitting the form above to secure your spot.</p>
-          <a href="https://paypal.me/erickristoffersen" target="_blank" class="payment-link">
-            Pay via PayPal
-          </a>
+        <div class="payment-info">
+          <h3>Secure Your Spot</h3>
+          <p style="margin-bottom: 2rem;">Registration is only confirmed once payment is received. Please include your name in the payment notes.</p>
+          
           <a href="https://venmo.com/riotofthought" target="_blank" class="payment-link">
             Pay via Venmo (@riotofthought)
+          </a>
+          <a href="https://paypal.me/erickristoffersen" target="_blank" class="payment-link">
+            Pay via PayPal
           </a>
         </div>
         <div class="qr-container">
@@ -467,70 +819,158 @@
     </section>
   </div>
 
+  <!-- Modals for "Learn More" -->
+  <div id="modal-container" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
   <footer>
+    <div class="footer-logo">WRECKING BALL WAREHOUSE</div>
     <div class="footer-content">
-      <p>© 2026 Wrecking Ball Warehouse Darts Tournament</p>
-      <p>1319 Burton Ave, Salinas, California</p>
+      <p>© 2026 Darts Tournament</p>
+      <p><a href="https://www.google.com/maps/search/?api=1&query=1319+BURTON+AVE+SALINAS+CA" target="_blank" style="color: inherit; text-decoration: underline;">1319 Burton Ave, Salinas, California</a></p>
+      <p style="margin-top: 1rem; color: var(--accent-yellow); font-size: 0.8rem;">All events 90% payout except Trios (100% Payout)</p>
     </div>
   </footer>
 
   <script>
-    const prices = {
-      friday: 20,
-      saturday_rr: 60,
-      saturday_night: 20,
-      sunday_open: 25,
-      sunday_womens: 25,
-      all: 175,
-      jersey: 65
+    const modalData = {
+      'calcutta': `
+        <h3>Calcutta Blind Draws</h3>
+        <p>After the blind draw teams are decided, we will do an auction. You can choose to bid on any team auction style.</p>
+        <p>80% of the winning bids will go to a prize pool and 20% will be used for event expenses. Whoever bids on the winning team will get 75% of that prize pool, 25% of the prize pool will go to the person who chose a randomly selected team.</p>
+        <p>Bring some cash but be smart about your bids! We will accept Venmo and similar payment options for these bids.</p>
+      `,
+      'sat-rr': `
+        <h3>Saturday Round Robin</h3>
+        <p>This is a modified round robin; it's “loosely balanced” for time constraint reasons. Everyone moves to the knockout.</p>
+        <p>Top known players will be separated, lowest known players will be separated, unknowns and everyone else will just end up in some of those groups.</p>
+        <p>Placement into the Upper or Lower knockout will be based on points and 3DA or some combination of those. Upper division will have more people and more money and pay a little deeper.</p>
+      `,
+      'sat-ko': `
+        <h3>Upper/Lower Knockout</h3>
+        <p>Possibly three divisions but at least two divisions, long format singles knockout. Top 64 usually head into the upper bracket.</p>
+        <p>This event is FREE for anyone who competed in the Saturday morning Round Robin.</p>
+      `,
+      'party': `
+        <h3>Saturday Finals Extravaganza</h3>
+        <p>Between 5 PM and 7 PM we turn it up!</p>
+        <ul>
+          <li>Free Beer (While Supplies Last)</li>
+          <li>Dinner (BBQ or Taco Truck or BYO)</li>
+          <li>Walk on’s with smoke machine and music!</li>
+          <li>Interviews & Live Streaming</li>
+          <li>CHEERING FOR BIG SHOTS!</li>
+        </ul>
+      `,
+      'trios': `
+        <h3>Open Mixed Trios</h3>
+        <p>Build your best team with your best buds and kick some ass! Must have two men and one lady.</p>
+        <p>Format: 701-Cricket-701. Single Elimination.</p>
+        <p><strong>100% PAYOUT EVENT!</strong></p>
+      `,
+      'sun-doubles': `
+        <h3>Sunday Divisional Doubles</h3>
+        <p>Build your best team or a team with your best friend. Your team will be placed in a division based on ratings from Saturday.</p>
+        <p>Two upper players will land in upper, two lowers in lower, etc. Unknown or Players who didn’t compete on Saturday will play Upper unless ratings can be confirmed.</p>
+      `,
+      'sun-singles': `
+        <h3>Sunday Divisional Singles</h3>
+        <p>Split into divisions by your ratings from the day before. Your three dart average will be the primary decider.</p>
+        <p>Again if you are unknown/unrated or didn't play on Saturday you will likely be forced to play upper division.</p>
+      `
     };
 
+    const modal = document.getElementById('modal-container');
+    const modalBody = document.getElementById('modal-body');
+    const closeBtn = document.querySelector('.close-modal');
+
+    function openModal(id) {
+      modalBody.innerHTML = modalData[id];
+      modal.style.display = "block";
+      document.body.style.overflow = "hidden";
+    }
+
+    closeBtn.onclick = () => {
+      modal.style.display = "none";
+      document.body.style.overflow = "auto";
+    };
+
+    window.onclick = (event) => {
+      if (event.target == modal) {
+        modal.style.display = "none";
+        document.body.style.overflow = "auto";
+      }
+    };
+
+    // Form Logic
     const form = document.querySelector('.signup-form');
-    const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+    const checkboxGroups = form.querySelectorAll('.checkbox-group');
     const totalPriceEl = document.getElementById('total-price');
+    const bundleCb = document.getElementById('bundle');
+    const individualCbs = [
+      document.getElementById('friday'),
+      document.getElementById('sat_rr'),
+      document.getElementById('sun_draw'),
+      document.getElementById('jersey')
+    ];
 
     function calculateTotal() {
       let total = 0;
-      const allEventsCheckbox = document.getElementById('all');
-
-      if (allEventsCheckbox.checked) {
-        total = prices.all;
-        checkboxes.forEach(cb => {
-          if (cb.id !== 'all') {
-            cb.disabled = true;
-            cb.checked = true;
-          }
+      
+      if (bundleCb.checked) {
+        // Handle Bundle Logic
+        total = 175;
+        individualCbs.forEach(cb => {
+          cb.checked = true;
+          cb.disabled = true;
+          cb.closest('.checkbox-group').classList.add('selected');
         });
       } else {
-        checkboxes.forEach(cb => {
-          if (cb.id !== 'all') {
-            cb.disabled = false;
-          }
-        });
-
-        checkboxes.forEach(checkbox => {
-          if (checkbox.checked && prices[checkbox.id] && checkbox.id !== 'all') {
-            total += prices[checkbox.id];
-          }
+        individualCbs.forEach(cb => {
+          cb.disabled = false;
         });
       }
 
-      totalPriceEl.textContent = `Total: $${total}`;
-    }
-
-    // Add click event to groups to make labels easier to hit
-    document.querySelectorAll('.checkbox-group').forEach(group => {
-      group.addEventListener('click', (e) => {
+      // Add up all checked items
+      checkboxGroups.forEach(group => {
         const cb = group.querySelector('input');
-        if (e.target !== cb && !cb.disabled) {
-          cb.checked = !cb.checked;
-          cb.dispatchEvent(new Event('change'));
+        if (cb.checked) {
+          group.classList.add('selected');
+          // If bundle is checked, we already accounted for its price
+          if (bundleCb.checked) {
+            if (cb.id === 'bundle') {
+              // total is already 175
+            } else if (!individualCbs.includes(cb)) {
+              total += parseInt(group.dataset.price);
+            }
+          } else {
+            total += parseInt(group.dataset.price);
+          }
+        } else {
+          group.classList.remove('selected');
         }
       });
-    });
 
-    checkboxes.forEach(checkbox => {
-      checkbox.addEventListener('change', calculateTotal);
+      totalPriceEl.textContent = `Total Due: $${total}`;
+    }
+
+    checkboxGroups.forEach(group => {
+      const cb = group.querySelector('input');
+      
+      group.addEventListener('click', (e) => {
+        if (e.target !== cb) {
+          if (!cb.disabled) {
+            cb.checked = !cb.checked;
+            calculateTotal();
+          }
+        }
+      });
+
+      cb.addEventListener('change', calculateTotal);
     });
 
     calculateTotal();
