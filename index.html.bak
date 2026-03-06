@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wrecking Ball Warehouse Darts Tournament</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Oswald', sans-serif;
+      background-color: #111;
+      color: #eee;
+      background-image: url('https://images.unsplash.com/photo-1600607687830-b2f9b9e1f3b4?auto=format&fit=crop&w=1400&q=80');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+    }
+    header {
+      text-align: center;
+      padding: 4rem 1rem;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+    }
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    header p {
+      font-size: 1.2rem;
+      color: #ccc;
+    }
+    section {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem 2rem;
+      background-color: rgba(20, 20, 20, 0.85);
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+    }
+    h2 {
+      border-bottom: 2px solid #8b0000;
+      padding-bottom: 0.3rem;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      color: #fff;
+    }
+    .event-schedule ul {
+      list-style: none;
+      padding: 0;
+    }
+    .event-schedule li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #333;
+    }
+    .signup-form label, .signup-form input, .signup-form select, .signup-form button {
+      display: block;
+      width: 100%;
+      margin: 0.5rem 0;
+      font-size: 1rem;
+    }
+    .signup-form input, .signup-form select {
+      padding: 0.5rem;
+      border: 1px solid #444;
+      background: #222;
+      color: #fff;
+      border-radius: 5px;
+    }
+    .signup-form button {
+      background: #8b0000;
+      border: none;
+      padding: 0.8rem;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+    .signup-form button:hover {
+      background: #b30000;
+    }
+    .payment-options {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .payment-options a {
+      display: inline-block;
+      color: #fff;
+      text-decoration: none;
+      background: #333;
+      padding: 0.6rem 1rem;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+    .payment-options a:hover {
+      background: #8b0000;
+    }
+    .qr img {
+      width: 160px;
+      border: 2px solid #8b0000;
+      border-radius: 8px;
+    }
+    .signup-form .checkbox-container {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin: 0.5rem 0;
+    }
+    .signup-form .checkbox-container input {
+      width: auto;
+      margin-right: 10px;
+    }
+    .signup-form .checkbox-container label {
+      width: auto;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #999;
+      background: rgba(0, 0, 0, 0.8);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Wrecking Ball Warehouse Darts Tournament</h1>
+    <p>March 27–29 · 1319 Burton Ave, Salinas, California</p>
+  </header>
+
+  <section class="event-schedule">
+    <h2>Event Schedule</h2>
+    <ul>
+      <li><strong>Friday 8 PM:</strong> CALCUTTA Blind Draw Doubles Chicago – $20 - $100 Added</li>
+      <li><strong>Saturday 10 AM:</strong> Open Round Robin Singles 501 - $60 - $500 Added</li>
+      <li><strong>Saturday 2 PM:</strong> Upper/Lower Knockout Singles 501 - Free with Round Robin Entry</li>
+      <li><strong>Saturday 8 PM:</strong> CALCUTTA Blind Draw Doubles Cricket – $20 - $100 Added</li>
+      <li><strong>Sunday 10 AM:</strong> Open Chicago Doubles – $50 per team (Double Elimination) - $100 Added</li>
+      <li><strong>Sunday 11 AM:</strong> Women's Chicago Doubles - $50 per team (Double Elimination) - $200 Added</li>
+    </ul>
+    <p>Sign up for all events in advance and buy a jersey to get a $15 discount! $190 Value for $175</p>
+  </section>
+
+  <section class="signup">
+    <h2>Sign Up</h2>
+    <form class="signup-form" action="https://formsubmit.co/erickristoffersen@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="New Darts Tournament Signup!">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <div class="checkbox-container">
+        <input type="checkbox" id="jersey" name="jersey" value="65">
+        <label for="jersey">Purchase a Tournament Jersey for $65 - We will email or DM you for size</label>
+      </div>
+
+      <label for="events">Select Events</label>
+      <div class="checkbox-container">
+        <input type="checkbox" id="friday" name="events" value="friday">
+        <label for="friday">Friday Open Blind Draw Chicago $20</label>
+      </div>
+      <div class="checkbox-container">
+        <input type="checkbox" id="saturday_rr" name="events" value="saturday_rr">
+        <label for="saturday_rr">Saturday Round Robin $60</label>
+      </div>
+      <div class="checkbox-container">
+        <input type="checkbox" id="saturday_night" name="events" value="saturday_night">
+        <label for="saturday_night">Saturday Blind Draw Cricket $20</label>
+      </div>
+      <div class="checkbox-container">
+        <input type="checkbox" id="sunday_open" name="events" value="sunday_open">
+        <label for="sunday_open">Sunday Open Doubles $25 (Individual)</label>
+      </div>
+      <div class="checkbox-container">
+        <input type="checkbox" id="sunday_womens" name="events" value="sunday_womens">
+        <label for="sunday_womens">Sunday Women's Doubles $25 (Individual)</label>
+      </div>
+      <div class="checkbox-container">
+        <input type="checkbox" id="all" name="events" value="all">
+        <label for="all">All Events and a Jersey $175 ($15 Discount)</label>
+      </div>
+
+      <h2 id="total-price">Total: $0</h2>
+      <button type="submit">Submit Registration</button>
+    </form>
+  </section>
+
+  <section class="payment">
+    <h2>Payment Options</h2>
+    <p>Choose your preferred method:</p>
+    <div class="payment-options">
+      <a href="https://paypal.me/erickristoffersen" target="_blank">Pay with PayPal</a>
+      <a href="https://venmo.com/riotofthought" target="_blank">Pay with Venmo (@riotofthought)</a>
+      <div class="qr">
+        <img src="venmo_qr.png" alt="Venmo QR Code" />
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Wrecking Ball Warehouse Darts Tournament · Salinas, CA</p>
+  </footer>
+
+  <script>
+    const prices = {
+      friday: 20,
+      saturday_rr: 60,
+      saturday_night: 20,
+      sunday_open: 25,
+      sunday_womens: 25,
+      all: 175,
+      jersey: 65
+    };
+
+    const form = document.querySelector('.signup-form');
+    const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+    const totalPriceEl = document.getElementById('total-price');
+
+    function calculateTotal() {
+      let total = 0;
+      const allEventsCheckbox = document.getElementById('all');
+      const jerseyCheckbox = document.getElementById('jersey');
+
+      if (allEventsCheckbox.checked) {
+        total = prices.all;
+        checkboxes.forEach(cb => {
+          if (cb.id !== 'all') {
+            cb.disabled = true;
+            cb.checked = true;
+          }
+        });
+      } else {
+        checkboxes.forEach(cb => {
+          if (cb.id !== 'all') {
+            cb.disabled = false;
+          }
+        });
+
+        checkboxes.forEach(checkbox => {
+          if (checkbox.checked && prices[checkbox.id] && checkbox.id !== 'all') {
+            total += prices[checkbox.id];
+          }
+        });
+      }
+
+      totalPriceEl.textContent = `Total: $${total}`;
+    }
+
+    document.getElementById('all').addEventListener('change', (e) => {
+        if (!e.target.checked) {
+            checkboxes.forEach(cb => {
+                if (cb.id !== 'all') {
+                    cb.checked = false;
+                }
+            })
+        }
+        calculateTotal();
+    });
+
+    checkboxes.forEach(checkbox => {
+        if (checkbox.id !== 'all') {
+            checkbox.addEventListener('change', calculateTotal);
+        }
+    });
+
+    calculateTotal();
+  </script>
+</body>
+</html>
