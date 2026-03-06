@@ -103,6 +103,19 @@
       border: 2px solid #8b0000;
       border-radius: 8px;
     }
+    .signup-form .checkbox-container {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin: 0.5rem 0;
+    }
+    .signup-form .checkbox-container input {
+      width: auto;
+      margin-right: 10px;
+    }
+    .signup-form .checkbox-container label {
+      width: auto;
+    }
     footer {
       text-align: center;
       padding: 2rem;
@@ -115,19 +128,19 @@
   <header>
     <h1>Wrecking Ball Warehouse Darts Tournament</h1>
     <p>March 27–29 · 1319 Burton Ave, Salinas, California</p>
-    <p>Grit. Steel. Darts. Underground energy.</p>
   </header>
 
   <section class="event-schedule">
     <h2>Event Schedule</h2>
     <ul>
-      <li><strong>Friday 8 PM:</strong> Open Blind Draw Doubles (Chicago) – $25</li>
-      <li><strong>Saturday Morning:</strong> Open Round Robin – $25</li>
-      <li><strong>Saturday 2 PM:</strong> Upper/Lower Knockout (No Round Robin: $50 · With Round Robin: $25)</li>
-      <li><strong>Saturday 8 PM:</strong> Open Blind Draw Cricket – $25</li>
-      <li><strong>Sunday 9 AM:</strong> Men’s & Women’s Chicago Doubles – $25 (Darts fly at 10 AM · Double Elimination)</li>
+      <li><strong>Friday 8 PM:</strong> CALCUTTA Blind Draw Doubles Chicago – $20 - $100 Added</li>
+      <li><strong>Saturday 10 AM:</strong> Open Round Robin Singles 501 - $60 - $500 Added</li>
+      <li><strong>Saturday 2 PM:</strong> Upper/Lower Knockout Singles 501 - Free with Round Robin Entry</li>
+      <li><strong>Saturday 8 PM:</strong> CALCUTTA Blind Draw Doubles Cricket – $20 - $100 Added</li>
+      <li><strong>Sunday 10 AM:</strong> Open Chicago Doubles – $50 per team (Double Elimination) - $100 Added</li>
+      <li><strong>Sunday 11 AM:</strong> Women's Chicago Doubles - $50 per team (Double Elimination) - $200 Added</li>
     </ul>
-    <p>Sign up for all events in advance and get a discount!</p>
+    <p>Sign up for all events in advance and buy a jersey to get a $15 discount! $190 Value for $175</p>
   </section>
 
   <section class="signup">
@@ -140,16 +153,38 @@
       <label for="email">Email</label>
       <input type="email" id="email" name="email" required>
 
-      <label for="events">Select Events</label>
-      <select id="events" name="events" multiple required>
-        <option value="friday">Friday Open Blind Draw</option>
-        <option value="saturday_rr">Saturday Round Robin</option>
-        <option value="saturday_ko">Saturday Knockout</option>
-        <option value="saturday_night">Saturday Blind Draw Cricket</option>
-        <option value="sunday">Sunday Men’s/Women’s Doubles</option>
-        <option value="all">All Events (Discount)</option>
-      </select>
+      <div class="checkbox-container">
+        <input type="checkbox" id="jersey" name="jersey" value="65">
+        <label for="jersey">Purchase a Tournament Jersey for $65 - We will email or DM you for size</label>
+      </div>
 
+      <label for="events">Select Events</label>
+      <div class="checkbox-container">
+        <input type="checkbox" id="friday" name="events" value="friday">
+        <label for="friday">Friday Open Blind Draw Chicago $20</label>
+      </div>
+      <div class="checkbox-container">
+        <input type="checkbox" id="saturday_rr" name="events" value="saturday_rr">
+        <label for="saturday_rr">Saturday Round Robin $60</label>
+      </div>
+      <div class="checkbox-container">
+        <input type="checkbox" id="saturday_night" name="events" value="saturday_night">
+        <label for="saturday_night">Saturday Blind Draw Cricket $20</label>
+      </div>
+      <div class="checkbox-container">
+        <input type="checkbox" id="sunday_open" name="events" value="sunday_open">
+        <label for="sunday_open">Sunday Open Doubles $25 (Individual)</label>
+      </div>
+      <div class="checkbox-container">
+        <input type="checkbox" id="sunday_womens" name="events" value="sunday_womens">
+        <label for="sunday_womens">Sunday Women's Doubles $25 (Individual)</label>
+      </div>
+      <div class="checkbox-container">
+        <input type="checkbox" id="all" name="events" value="all">
+        <label for="all">All Events and a Jersey $175 ($15 Discount)</label>
+      </div>
+
+      <h2 id="total-price">Total: $0</h2>
       <button type="submit">Submit Registration</button>
     </form>
   </section>
@@ -169,5 +204,70 @@
   <footer>
     <p>© 2025 Wrecking Ball Warehouse Darts Tournament · Salinas, CA</p>
   </footer>
+
+  <script>
+    const prices = {
+      friday: 20,
+      saturday_rr: 60,
+      saturday_night: 20,
+      sunday_open: 25,
+      sunday_womens: 25,
+      all: 175,
+      jersey: 65
+    };
+
+    const form = document.querySelector('.signup-form');
+    const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+    const totalPriceEl = document.getElementById('total-price');
+
+    function calculateTotal() {
+      let total = 0;
+      const allEventsCheckbox = document.getElementById('all');
+      const jerseyCheckbox = document.getElementById('jersey');
+
+      if (allEventsCheckbox.checked) {
+        total = prices.all;
+        checkboxes.forEach(cb => {
+          if (cb.id !== 'all') {
+            cb.disabled = true;
+            cb.checked = true;
+          }
+        });
+      } else {
+        checkboxes.forEach(cb => {
+          if (cb.id !== 'all') {
+            cb.disabled = false;
+          }
+        });
+
+        checkboxes.forEach(checkbox => {
+          if (checkbox.checked && prices[checkbox.id] && checkbox.id !== 'all') {
+            total += prices[checkbox.id];
+          }
+        });
+      }
+
+      totalPriceEl.textContent = `Total: $${total}`;
+    }
+
+    document.getElementById('all').addEventListener('change', (e) => {
+        if (!e.target.checked) {
+            checkboxes.forEach(cb => {
+                if (cb.id !== 'all') {
+                    cb.checked = false;
+                }
+            })
+        }
+        calculateTotal();
+    });
+
+    checkboxes.forEach(checkbox => {
+        if (checkbox.id !== 'all') {
+            checkbox.addEventListener('change', calculateTotal);
+        }
+    });
+
+    calculateTotal();
+  </script>
 </body>
 </html>
